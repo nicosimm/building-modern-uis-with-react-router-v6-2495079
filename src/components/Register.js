@@ -1,27 +1,34 @@
-import { useRef } from "react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/red30-tech-logo.png";
 
-export default function Register() {
-  const emailRef = useRef(null);
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+export default function Header() {
+  const getClass = ({ isActive }) => (isActive ? "nav-active" : null);
 
   return (
-    <div className="container">
-      <h1>Register for Red30 Tech</h1>
-      <p>
-        Make sure to grab your spot for this year's conference! We love
-        technology and consistently work towards being the premier provider of
-        technology solutions and events that connect the world.
-      </p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="text" name="email" ref={emailRef} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+    <header className="container">
+      <Link to="/">
+        <img
+          className="logo"
+          src={logo}
+          alt="Red30 Tech logo"
+          title="Red30 Tech | Home"
+        />
+      </Link>
+
+      <nav>
+        <NavLink to="/" className={getClass}>
+          Home
+        </NavLink>
+        <NavLink to="/about" className={getClass}>
+          About
+        </NavLink>
+        <NavLink to="/categories" className={getClass}>
+          Categories
+        </NavLink>
+        <NavLink to="/register" className={getClass}>
+          Register
+        </NavLink>
+      </nav>
+    </header>
   );
 }
